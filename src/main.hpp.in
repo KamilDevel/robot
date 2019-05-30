@@ -6,7 +6,7 @@
 #define Robot_VERSION_MINOR @Robot_VERSION_MINOR@
 #define Robot_VERSION_PATCH @Robot_VERSION_PATCH@
 
-/* Number of bricks connected */
+/* Number of bricks connected EV3/BrickPI */
 #define Robot_NUMBER_OF_BRICKS @Robot_NUMBER_OF_BRICKS@
 
 /* Build code name */
