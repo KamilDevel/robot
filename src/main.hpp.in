@@ -1,0 +1,15 @@
+#ifndef ROBOT_MAIN_HPP
+#define ROBOT_MAIN_HPP
+
+/* Version definition */
+#define Robot_VERSION_MAJOR @Robot_VERSION_MAJOR@
+#define Robot_VERSION_MINOR @Robot_VERSION_MINOR@
+#define Robot_VERSION_PATCH @Robot_VERSION_PATCH@
+
+/* Number of bricks connected */
+#define Robot_NUMBER_OF_BRICKS @Robot_NUMBER_OF_BRICKS@
+
+/* Build code name */
+#define Robot_CODENAME @Robot_CODENAME@
+
+#endif
