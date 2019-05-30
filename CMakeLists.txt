@@ -29,4 +29,4 @@ configure_file (
 include_directories ("${PROJECT_SOURCE_DIR}/src")
 
 # add_executable
-add_executable (Robot "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/libs/libev3dev.a")
+add_executable (Robot "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/robot-libs/libev3dev.a")
