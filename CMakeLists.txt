@@ -19,7 +19,7 @@ set (Robot_NUMBER_OF_BRICKS 1)
 # Build code name
 set (Robot_CODENAME APLHA)
 
-# Configure main header file with value passed from cmake
+# Configure main header file with values passed from cmake
 configure_file (
     "${PROJECT_SOURCE_DIR}/src/main.hpp.in"
     "${PROJECT_SOURCE_DIR}/src/main.hpp"
@@ -28,5 +28,5 @@ configure_file (
 # Add src directory for scanning
 include_directories ("${PROJECT_SOURCE_DIR}/src")
 
-# add_executable
+# Add all required to executable :TODO split for more flexibility
 add_executable (Robot "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/src/Robot/Application.cpp" "${PROJECT_SOURCE_DIR}/robot-libs/libev3dev.a")

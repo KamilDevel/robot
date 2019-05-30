@@ -1,16 +1,15 @@
 #include "./Application.hpp"
 
 /**
- * Default constructor.
+ * Default Constructor.
  */
-
 Robot::Application::Application()
 {
 
 }
 
 /**
- * Default destructor.
+ * Default Destructor.
  */
 Robot::Application::~Application()
 {
