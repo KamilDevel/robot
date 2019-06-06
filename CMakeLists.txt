@@ -5,8 +5,8 @@ cmake_minimum_required (VERSION 3.7)
 project (Robot)
 
 # Set compilers
-set (CMAKE_CC_COMPILER "arm-linux-gnueabi-gcc")
-set (CMAKE_CXX_COMPILER "arm-linux-gnueabi-g++")
+set (CMAKE_CC_COMPILER arm-linux-gnueabi-gcc)
+set (CMAKE_CXX_COMPILER arm-linux-gnueabi-g++)
 
 # Current Project version
 set (Robot_VERSION_MAJOR 0)
@@ -21,12 +21,15 @@ set (Robot_CODENAME APLHA)
 
 # Configure main header file with values passed from cmake
 configure_file (
-    "${PROJECT_SOURCE_DIR}/src/main.hpp.in"
-    "${PROJECT_SOURCE_DIR}/src/main.hpp"
+    ${PROJECT_SOURCE_DIR}/src/main.hpp.in
+    ${PROJECT_SOURCE_DIR}/src/main.hpp
 )
 
 # Add src directory for scanning
-include_directories ("${PROJECT_SOURCE_DIR}/src")
+include_directories (${PROJECT_SOURCE_DIR}/src)
 
 # Add all required to executable :TODO split for more flexibility
-add_executable (Robot "${PROJECT_SOURCE_DIR}/src/main.cpp" "${PROJECT_SOURCE_DIR}/src/Robot/Application.cpp" "${PROJECT_SOURCE_DIR}/robot-libs/libev3dev.a")
+add_executable (Robot ${PROJECT_SOURCE_DIR}/src/main.cpp ${PROJECT_SOURCE_DIR}/src/Robot/Application.cpp)
+
+# Add all libraies to the linker
+target_link_libraries (Robot ${PROJECT_SOURCE_DIR}/robot-libs/libev3dev.a)

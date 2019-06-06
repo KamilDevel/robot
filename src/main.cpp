@@ -1,11 +1,10 @@
 #include "./main.hpp"
 #include <iostream>
 
-
-using namespace std;
-
 int main(int argc, char** argv) {
-    cout << "Hellow World EV3!" << endl;
+    Robot::Application app;
+
+    app.start();
 
     return 0;
 }
