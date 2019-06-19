@@ -5,19 +5,20 @@ cmake_minimum_required (VERSION 3.7)
 project (Robot)
 
 # Set compilers
+set (CMAKE_C_COMPILER arm-linux-gnueabi-c)
 set (CMAKE_CC_COMPILER arm-linux-gnueabi-gcc)
 set (CMAKE_CXX_COMPILER arm-linux-gnueabi-g++)
 
 # Current Project version
-set (Robot_VERSION_MAJOR 0)
-set (Robot_VERSION_MINOR 0)
-set (Robot_VERSION_PATCH 1)
+set (VERSION_MAJOR 1)
+set (VERSION_MINOR 0)
+set (VERSION_PATCH 0)
 
 # Number of brick controllers
-set (Robot_NUMBER_OF_BRICKS 1)
+set (NUMBER_OF_BRICKS 1)
 
 # Build code name
-set (Robot_CODENAME APLHA)
+set (CODENAME APLHA)
 
 # Configure main header file with values passed from cmake
 configure_file (
@@ -29,7 +30,12 @@ configure_file (
 include_directories (${PROJECT_SOURCE_DIR}/src)
 
 # Add all required to executable :TODO split for more flexibility
-add_executable (Robot ${PROJECT_SOURCE_DIR}/src/main.cpp ${PROJECT_SOURCE_DIR}/src/Robot/Application.cpp)
+add_executable (
+    Robot 
+    ${PROJECT_SOURCE_DIR}/src/main.cpp 
+    ${PROJECT_SOURCE_DIR}/src/Application/Robot.cpp
+    ${PROJECT_SOURCE_DIR}/src/Application/Logger/Console.cpp
+)
 
 # Add all libraies to the linker
-target_link_libraries (Robot ${PROJECT_SOURCE_DIR}/robot-libs/libev3dev.a)
+target_link_libraries (Robot ${PROJECT_SOURCE_DIR}/libs/libev3dev.a)
