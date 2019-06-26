@@ -21,6 +21,12 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
-int main() {
+#include "main.hpp"
 
+int main(int argc, char **argv) {
+    robot::Application app;
+
+    app.start(); 
+
+    return 0;
 }

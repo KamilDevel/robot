@@ -21,24 +21,44 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
-#ifndef MAIN_HPP
-#define MAIN_HPP
+#include "Application.hpp"
 
-/* Required includes */
-#include "robot/Application.hpp"
+using namespace std;
+using namespace robot;
+using namespace robot::logger;
+using namespace robot::controller;
+using namespace robot::controller::remote;
+using namespace robot::controller::remote::handler;
 
-/* Version definition */
-#define VERSION_MAJOR @VERSION_MAJOR@
-#define VERSION_MINOR @VERSION_MINOR@
-#define VERSION_PATCH @VERSION_PATCH@
+/*
+-----------------------------------------------------------------------------
+Constructor.
+-----------------------------------------------------------------------------
+*/
+Application::Application()
+{
+    auto test = make_shared<Test>();
+    auto remote = make_shared<Remote>(move(test));
+}
 
-/* Build code name */
-#define CODENAME @CODENAME@
+/*
+-----------------------------------------------------------------------------
+Destructor.
+-----------------------------------------------------------------------------
+*/
+Application::~Application()
+{
 
-/* Full version name */
-#define VERSION @VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@:@CODENAME@
+}
 
-/* Number of bricks connected EV3/BrickPI */
-#define NUMBER_OF_BRICKS @NUMBER_OF_BRICKS@
+/*
+-----------------------------------------------------------------------------
+Start the Robot application.
+-----------------------------------------------------------------------------
+*/
+void Application::start() 
+{
+    Console::log(LEVEL_DEBUG, "Robot application " + Console::green("STARTED"));
 
-#endif
+    Console::log(LEVEL_DEBUG, "Robot application " + Console::yellow("STOPPED"));
+}

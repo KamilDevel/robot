@@ -9,6 +9,9 @@ set (CMAKE_C_COMPILER arm-linux-gnueabi-c)
 set (CMAKE_CC_COMPILER arm-linux-gnueabi-gcc)
 set (CMAKE_CXX_COMPILER arm-linux-gnueabi-g++)
 
+# Add compilation flags
+set (CMAKE_CXX_FLAGS "-std=c++14 -pthread")
+
 # Current Project version
 set (VERSION_MAJOR 1)
 set (VERSION_MINOR 0)
@@ -18,7 +21,7 @@ set (VERSION_PATCH 0)
 set (NUMBER_OF_BRICKS 1)
 
 # Build code name
-set (CODENAME APLHA)
+set (CODENAME alpha)
 
 # Configure main header file with values passed from cmake
 configure_file (
@@ -32,9 +35,11 @@ include_directories (${PROJECT_SOURCE_DIR}/src)
 # Add all required to executable :TODO split for more flexibility
 add_executable (
     Robot 
-    ${PROJECT_SOURCE_DIR}/src/main.cpp 
-    ${PROJECT_SOURCE_DIR}/src/Application/Robot.cpp
-    ${PROJECT_SOURCE_DIR}/src/Application/Logger/Console.cpp
+    ${PROJECT_SOURCE_DIR}/src/main.cpp
+    ${PROJECT_SOURCE_DIR}/src/robot/Application.cpp 
+    ${PROJECT_SOURCE_DIR}/src/robot/logger/Console.cpp 
+    ${PROJECT_SOURCE_DIR}/src/robot/controller/Remote.cpp 
+    ${PROJECT_SOURCE_DIR}/src/robot/controller/remote/handler/Test.cpp 
 )
 
 # Add all libraies to the linker
