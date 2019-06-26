@@ -85,3 +85,13 @@ void Test::on_blue_down(bool state)
 {
     cout << "on_blue_down" << " " << (state ? "pressed" : "released") << endl;
 }
+
+/*
+-----------------------------------------------------------------------------
+Beacon button event handler.
+-----------------------------------------------------------------------------
+*/
+void Test::on_beacon(bool state)
+{
+    cout << "beacon" << " " << (state ? "pressed" : "released") << endl;
+}

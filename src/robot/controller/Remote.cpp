@@ -51,6 +51,7 @@ void Remote::init_bindings()
     this->bind_red_down();
     this->bind_blue_up();
     this->bind_blue_down();
+    this->bind_beacon();
 }
 
 /*
@@ -91,6 +92,16 @@ Bind Blue DOWN button event handler.
 void Remote::bind_blue_down()
 {
     this->remote_controller.on_blue_down = bind(&HandlersInterface::on_blue_down, this->event_handlers, placeholders::_1);
+}
+
+/*
+-----------------------------------------------------------------------------
+Beacon button event handler.
+-----------------------------------------------------------------------------
+*/
+void Remote::bind_beacon()
+{
+    this->remote_controller.on_beacon = bind(&HandlersInterface::on_beacon, this->event_handlers, placeholders::_1);
 }
 
 /*
