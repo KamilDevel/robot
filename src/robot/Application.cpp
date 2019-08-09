@@ -23,22 +23,20 @@ THE SOFTWARE.
 
 #include "Application.hpp"
 
-using namespace std;
 using namespace robot;
-using namespace robot::logger;
-using namespace robot::controller;
-using namespace robot::controller::remote;
-using namespace robot::controller::remote::handler;
 
 /*
 -----------------------------------------------------------------------------
-Constructor.
+Default constructor.
 -----------------------------------------------------------------------------
 */
 Application::Application()
 {
-    auto test = make_shared<Test>();
-    auto remote = make_shared<Remote>(move(test));
+    /* Application state */
+    this->init_state();
+
+    /* Initialize features */
+    this->init_features();
 }
 
 /*
@@ -48,17 +46,42 @@ Destructor.
 */
 Application::~Application()
 {
-
+    logger::Console::log(LEVEL_DEBUG, "Robot application main thread " + Console::yellow("STOPPED"));
 }
 
 /*
 -----------------------------------------------------------------------------
-Start the Robot application.
+Initialize application state.
+-----------------------------------------------------------------------------
+*/                
+void Application::init_state(void)
+{
+    this->state = make_shared<State>();
+}
+
+/*
+-----------------------------------------------------------------------------
+Initialize all Robot features.
+-----------------------------------------------------------------------------
+*/                
+void Application::init_features(void)
+{
+    logger::Console::log(LEVEL_DEBUG, "Initialize Robot application " + Console::cyan("features"));
+
+    /* Infrared remote feature */
+    this->features.insert(make_pair("Remote", make_shared<Remote>(this->state)));
+}
+
+/*
+-----------------------------------------------------------------------------
+Run the application (c++17 not working with cross compile, c++11 used).
 -----------------------------------------------------------------------------
 */
-void Application::start() 
+void Application::run(void)
 {
-    Console::log(LEVEL_DEBUG, "Robot application " + Console::green("STARTED"));
+    logger::Console::log(LEVEL_DEBUG, "Robot application main thread " + Console::green("STARTED"));
 
-    Console::log(LEVEL_DEBUG, "Robot application " + Console::yellow("STOPPED"));
+    for(auto &feature : this->features) {
+        cout << feature.first << endl;
+    }
 }

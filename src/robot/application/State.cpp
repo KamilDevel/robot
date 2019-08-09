@@ -21,24 +21,26 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
-#ifndef MAIN_HPP
-#define MAIN_HPP
+#include "State.hpp"
 
-/* Main application */
-#include "robot/Application.hpp"
+using namespace robot::application;
 
-/* Version definition */
-#define VERSION_MAJOR @VERSION_MAJOR@
-#define VERSION_MINOR @VERSION_MINOR@
-#define VERSION_PATCH @VERSION_PATCH@
+/*
+-----------------------------------------------------------------------------
+Default constructor.
+-----------------------------------------------------------------------------
+*/
+State::State()
+{
 
-/* Build code name */
-#define CODENAME @CODENAME@
+}
 
-/* Full version name */
-#define VERSION @VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@:@CODENAME@
-
-/* Number of bricks connected EV3/BrickPI */
-#define NUMBER_OF_BRICKS @NUMBER_OF_BRICKS@
-
-#endif
+/*
+-----------------------------------------------------------------------------
+Is application running.
+-----------------------------------------------------------------------------
+*/
+bool State::is_running()
+{
+    return this->isRunning;
+}

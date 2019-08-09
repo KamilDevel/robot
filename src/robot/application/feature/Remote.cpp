@@ -21,24 +21,28 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
-#ifndef MAIN_HPP
-#define MAIN_HPP
+#include "Remote.hpp"
 
-/* Main application */
-#include "robot/Application.hpp"
+using namespace std;
+using namespace robot::application;
+using namespace robot::application::feature;
 
-/* Version definition */
-#define VERSION_MAJOR @VERSION_MAJOR@
-#define VERSION_MINOR @VERSION_MINOR@
-#define VERSION_PATCH @VERSION_PATCH@
+/*
+-----------------------------------------------------------------------------
+Default constructor.
+-----------------------------------------------------------------------------
+*/
+Remote::Remote(shared_ptr<State> state)
+{
+    this->set_state(state);
+}
 
-/* Build code name */
-#define CODENAME @CODENAME@
+/*
+-----------------------------------------------------------------------------
+Run the feature.
+-----------------------------------------------------------------------------
+*/
+void Remote::run(void)
+{
 
-/* Full version name */
-#define VERSION @VERSION_MAJOR@.@VERSION_MINOR@.@VERSION_PATCH@:@CODENAME@
-
-/* Number of bricks connected EV3/BrickPI */
-#define NUMBER_OF_BRICKS @NUMBER_OF_BRICKS@
-
-#endif
+}

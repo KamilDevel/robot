@@ -22,23 +22,60 @@ THE SOFTWARE.
 */
 
 #include <iostream>
-#include <string>
 #include <memory>
-#include <utility>
-#include "../../include/ev3dev/ev3dev.h"
-#include "../../include/robot/controller/remote/HandlersInterface.hpp"
+#include <map>
+#include <string>
 #include "logger/Console.hpp"
-#include "./robot/controller/Remote.hpp"
-#include "./robot/controller/remote/handler/Test.hpp"
+#include "application/State.hpp"
+#include "application/feature/Interface.hpp"
+#include "application/feature/Remote.hpp"
 
-#ifndef ROBOT_APPLICATION
-#define ROBOT_APPLICATION
-    namespace robot {
-        class Application {
+using namespace std;
+using namespace robot::application;
+
+#ifndef ROBOT_APPLICATION_HPP
+#define ROBOT_APPLICATION_HPP
+    namespace robot
+    {
+        /*
+        -----------------------------------------------------------------------------
+        Application class.
+        -----------------------------------------------------------------------------
+        */
+        class Application
+        {
+            private:
+                /*
+                -----------------------------------------------------------------------------
+                Application state.
+                -----------------------------------------------------------------------------
+                */          
+                shared_ptr<State> state;
+
+                /*
+                -----------------------------------------------------------------------------
+                Application features.
+                -----------------------------------------------------------------------------
+                */          
+                map<string, shared_ptr<feature::Interface>> features;
+
+                /*
+                -----------------------------------------------------------------------------
+                Initialize application state.
+                -----------------------------------------------------------------------------
+                */                
+                void init_state(void);
+
+                /*
+                -----------------------------------------------------------------------------
+                Initialize all Robot features.
+                -----------------------------------------------------------------------------
+                */                
+                void init_features(void);
             public:
                 /*
                 -----------------------------------------------------------------------------
-                Constructor.
+                Default constructor.
                 -----------------------------------------------------------------------------
                 */
                 Application();
@@ -52,10 +89,10 @@ THE SOFTWARE.
 
                 /*
                 -----------------------------------------------------------------------------
-                Start the Robot application.
+                Run the application.
                 -----------------------------------------------------------------------------
                 */
-                void start();
+                void run(void);
         };
-    }
+    };
 #endif

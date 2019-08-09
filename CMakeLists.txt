@@ -10,7 +10,7 @@ set (CMAKE_CC_COMPILER arm-linux-gnueabi-gcc)
 set (CMAKE_CXX_COMPILER arm-linux-gnueabi-g++)
 
 # Add compilation flags
-set (CMAKE_CXX_FLAGS "-std=c++14 -pthread")
+set (CMAKE_CXX_FLAGS "-std=c++17 -pthread")
 
 # Current Project version
 set (VERSION_MAJOR 1)
@@ -36,10 +36,10 @@ include_directories (${PROJECT_SOURCE_DIR}/src)
 add_executable (
     Robot 
     ${PROJECT_SOURCE_DIR}/src/main.cpp
-    ${PROJECT_SOURCE_DIR}/src/robot/Application.cpp 
+    ${PROJECT_SOURCE_DIR}/src/robot/Application.cpp
+    ${PROJECT_SOURCE_DIR}/src/robot/application/State.cpp
+    ${PROJECT_SOURCE_DIR}/src/robot/application/feature/Remote.cpp
     ${PROJECT_SOURCE_DIR}/src/robot/logger/Console.cpp 
-    ${PROJECT_SOURCE_DIR}/src/robot/controller/Remote.cpp 
-    ${PROJECT_SOURCE_DIR}/src/robot/controller/remote/handler/Test.cpp 
 )
 
 # Add all libraies to the linker

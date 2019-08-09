@@ -21,77 +21,73 @@ THE SOFTWARE.
 -----------------------------------------------------------------------------
 */
 
-#include <iostream>
+#include <memory>
+#include "../State.hpp"
 
-#ifndef ROBOT_CONTROLLER_REMOTE_HANDLERS_INTERFACE
-#define ROBOT_CONTROLLER_REMOTE_HANDLERS_INTERFACE
+using namespace std;
+using namespace robot::application;
+
+#ifndef ROBOT_APPLICATION_FEATURE_INTERFACE_HPP
+#define ROBOT_APPLICATION_FEATURE_INTERFACE_HPP
     namespace robot
     {
-        inline namespace controller
+        inline namespace application
         {
-            inline namespace remote
+            inline namespace feature
             {
                 /*
                 -----------------------------------------------------------------------------
-                Type definition for event handler.
+                Application feature interface.
                 -----------------------------------------------------------------------------
                 */
-                typedef void (*eventHandler)(bool);
-
-                /*
-                -----------------------------------------------------------------------------
-                Interface for EV3 infrared sensor remote event handlers.
-                -----------------------------------------------------------------------------
-                */
-                class HandlersInterface
+                class Interface
                 {
+                    protected:
+                        /*
+                        -----------------------------------------------------------------------------
+                        Application state.
+                        -----------------------------------------------------------------------------
+                        */
+                        shared_ptr<State> state;
                     public:
                         /*
                         -----------------------------------------------------------------------------
                         Virtual destructor, to avoid memory leaks.
                         -----------------------------------------------------------------------------
                         */
-                        virtual ~HandlersInterface()
+                        virtual ~Interface()
                         {
 
                         }
 
                         /*
                         -----------------------------------------------------------------------------
-                        Red UP button event handler.
+                        Set application state.
                         -----------------------------------------------------------------------------
                         */
-                        virtual void on_red_up(bool state) = 0;
+                        void set_state(shared_ptr<State> state)
+                        {
+                            this->state = state;
+                        }
 
                         /*
                         -----------------------------------------------------------------------------
-                        Red DOWN button event handler.
+                        Get application state.
                         -----------------------------------------------------------------------------
                         */
-                        virtual void on_red_down(bool state) = 0;
+                        shared_ptr<State> get_state()
+                        {
+                            return this->state;
+                        }
 
                         /*
                         -----------------------------------------------------------------------------
-                        Blue UP button event handler.
+                        Run the feature.
                         -----------------------------------------------------------------------------
                         */
-                        virtual void on_blue_up(bool state) = 0;
-
-                        /*
-                        -----------------------------------------------------------------------------
-                        Blue DOWN button event handler.
-                        -----------------------------------------------------------------------------
-                        */
-                        virtual void on_blue_down(bool state) = 0;
-
-                        /*
-                        -----------------------------------------------------------------------------
-                        Beacon button event handler.
-                        -----------------------------------------------------------------------------
-                        */
-                        virtual void on_beacon(bool state) = 0;
+                        virtual void run(void) = 0;
                 };
             };
-        };
+        }; 
     };
 #endif

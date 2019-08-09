@@ -23,10 +23,13 @@ THE SOFTWARE.
 
 #include "main.hpp"
 
-int main(int argc, char **argv) {
-    robot::Application app;
+using namespace std;
+using namespace robot;
 
-    app.start(); 
+int main(int argc, char **argv) {
+    auto application = make_unique<Application>();
+
+    application->run();
 
     return 0;
 }
